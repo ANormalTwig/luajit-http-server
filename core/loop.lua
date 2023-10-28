@@ -1,3 +1,5 @@
+local socket_select = require("socket").select
+
 ---@type table<{ poll: fun(), _done: boolean }, boolean>
 local objects = {}
 
@@ -18,6 +20,7 @@ local function run()
 				object:poll()
 			end
 		end
+		socket_select(nil, nil, 1 / 60)
 	end
 end
 
